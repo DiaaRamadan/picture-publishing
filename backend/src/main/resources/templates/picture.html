@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pictures</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+
+</head>
+<body>
+<h3 class="text-center">Picture details</h3>
+<div class="container mt-4">
+    <form th:object="${picture}">
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description">[[${picture.description}]]</textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category"  th:value="*{pictureCategory}">
+        </div>
+
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input type="text" class="form-control" id="height"  th:value="${picture.height != null} ? ${picture.height} : ''">
+        </div>
+
+        <div class="form-group">
+            <label for="width">Width</label>
+            <input type="text" class="form-control" id="width"  th:value="*{width}">
+        </div>
+
+
+        <div class="form-group">
+           <img th:src="@{${picture.url}}" alt="">
+        </div>
+    </form>
+
+    <div>
+        <a th:href="@{'/pictures/' + ${picture.id} +  '/accepted'}" class="btn btn-primary">Accept</a>
+        <a th:href="@{'/pictures/' + ${picture.id} + '/rejected'}" class="btn btn-danger">Reject</a>
+    </div>
+
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

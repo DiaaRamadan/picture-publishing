@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pictures</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+
+</head>
+<body>
+<h3 class="text-center">Pictures</h3>
+<div class="container-fluid mt-4">
+    <table class="table table-bordered table-hover table-striped table-responsive">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Attachment</th>
+            <th>User</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="picture : ${pictures}">
+            <td>[[${picture.id}]]</td>
+            <td>[[${picture.description}]]</td>
+            <td>
+                <img th:src="@{${picture.url}}" alt="">
+            </td>
+            <td>[[${picture.user.email}]]</td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/pictures/' + ${picture.id}}" title="Show this picture">Show</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
